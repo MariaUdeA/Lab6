@@ -44,4 +44,3 @@ bola *bolagraf::getesfera()
 {
     return esfera;
 }
-

@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     scene->addRect(scene->sceneRect());
     ui->graphicsView->setScene(scene);
 
-    obj=new bolagraf(150,300,40,0,11,300);
+    obj=new bolagraf(150,300,0,0,11,300);
     scene->addItem(obj);
     obj->pos(v_limit);
 
@@ -34,20 +34,20 @@ MainWindow::~MainWindow()
 void MainWindow::bordercollision(bolagraf *b)
 {
     if (b->getesfera()->getPx()<b->getesfera()->getRad()){
-            b->getesfera()->setVx(b->getesfera()->getVx()*-1);
-            b->getesfera()->setPx(b->getesfera()->getRad());
+        b->getesfera()->setVx(b->getesfera()->getVx()*-1);
+        b->getesfera()->setPx(b->getesfera()->getRad());
     }
     if (b->getesfera()->getPx()>h_limit-b->getesfera()->getRad()){
-            b->getesfera()->setVx(b->getesfera()->getVx()*-1);
-            b->getesfera()->setPx(h_limit-b->getesfera()->getRad());
+        b->getesfera()->setVx(b->getesfera()->getVx()*-1);
+        b->getesfera()->setPx(h_limit-b->getesfera()->getRad());
     }
     if (b->getesfera()->getPy()<b->getesfera()->getRad()){
-            b->getesfera()->setVy(b->getesfera()->getVy()*-1);
-            b->getesfera()->setPy(b->getesfera()->getRad());
+        b->getesfera()->setVy(b->getesfera()->getVy()*-1);
+        b->getesfera()->setPy(b->getesfera()->getRad());
      }
      if (b->getesfera()->getPy()>v_limit-b->getesfera()->getRad()){
-         b->getesfera()->setVy(b->getesfera()->getVy()*-1);
-         b->getesfera()->setPy(v_limit-b->getesfera()->getRad());
+        b->getesfera()->setVy(b->getesfera()->getVy()*-1);
+        b->getesfera()->setPy(v_limit-b->getesfera()->getRad());
     }
     b->actualizar(v_limit);
 }

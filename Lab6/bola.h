@@ -41,6 +41,9 @@ private:
     float vy;
     float ax=0;
     float ay=0;
+    float k=0.5*DEN*FR*3.1416;
+    float vel;
+    float angulo;
     const float masa;
     const float rad;
 };

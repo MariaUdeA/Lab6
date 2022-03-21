@@ -79,34 +79,38 @@ float bola::getRad() const
 
 void bola::mover(float dt)
 {
-    ax=0;
-    //ay=0;
-    float vel=(vx*vx)+(vy*vy);
-    float k=0.5*DEN*FR*3.1416;
-    float angulo;
+    vel=(vx*vx)+(vy*vy);
     if (vx==0){
+        ax=0;
         if (vy>=0)
             ay=-G-((k*vel*rad*rad)/masa);
         if (vy<0)
             ay=-G+((k*vel*rad*rad)/masa);
-    }
+        }
     if (vy==0){
-        if (vx>0)
+        if (vx>=0)
             ax=-((k*vel*rad*rad)/masa);
         if (vx<0)
             ax=((k*vel*rad*rad)/masa);
-        ay=-G;
-    }
-    if (vy!=0 && vx!=0) {
-    angulo=atan(vy/vx);
-    if (vy>0)
-        ay=-G-((k*vel*rad*rad*cos(angulo))/masa);
-    if (vy<0)
-        ay=-G+((k*vel*rad*rad*cos(angulo))/masa);
-    if (vx>0)
-        ax=-((k*vel*rad*rad*sin(angulo))/masa);
-    if (vx<0)
-        ax=((k*vel*rad*rad*sin(angulo))/masa);
+        if (py==rad)
+            ay=0;
+        if(py!=rad)
+            ay=-G;
+        }
+    if (vy!=0 && vx!=0) { //problema
+        angulo=abs(atan(vy/vx));
+        if (vy>0) ay=-G-((k*vel*rad*rad*sin(angulo))/masa);
+        if (vy<0) ay=-G+((k*vel*rad*rad*sin(angulo))/masa);
+        if (vx>0) ax=-((k*vel*rad*rad*cos(angulo))/masa);
+        if (vx<0) ax=((k*vel*rad*rad*cos(angulo))/masa);
+        }
+    if (vy>=0 && py<rad && ay<=0){
+        vy=0;
+        ay=0;
+        if (vx>0)
+            ax=-((k*vel*rad*rad)/masa);
+        if (vx<=0)
+            ax=((k*vel*rad*rad)/masa);
     }
     vx = vx+(dt*ax);
     vy = vy+(dt*ay);
@@ -118,4 +122,3 @@ float bola::getMasa() const
 {
     return masa;
 }
-
