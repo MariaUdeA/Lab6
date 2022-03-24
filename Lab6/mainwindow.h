@@ -27,6 +27,7 @@ public:
     void mousePressEvent(QMouseEvent *event);
     bool checkPlacement(bolagraf *b);
     void createCoef();
+    void showLine();
 
 private slots:
     void actualizar();
@@ -34,6 +35,8 @@ private slots:
     void on_Start_clicked();
 
     void on_Random_clicked();
+
+    void on_Apply_clicked();
 
 private:
     Ui::MainWindow *ui;

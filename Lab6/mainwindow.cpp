@@ -23,6 +23,8 @@ MainWindow::MainWindow(QWidget *parent)
     scene->addItem(obj2);
     obj2->pos(v_limit);
     createCoef();
+    sesion=true;
+    startAction();
     obj3=new bolagraf(150,11,40,40,11,200);
     bolas.push_back(obj3);
     scene->addItem(obj3);
@@ -70,8 +72,19 @@ void MainWindow::objectcollision(bolagraf *a, bolagraf *b,int a_, int b_) //arre
         //    a->getesfera()->setEncima(true);
         //}
         //else{
-        a->getesfera()->setVx(a->getesfera()->getVx()*-coe);
-        a->getesfera()->setVy(a->getesfera()->getVy()*-coe);
+        float vx=(a->getesfera()->getVx()*-coe);
+        float vy=(a->getesfera()->getVy()*-coe);
+        float bx=(a->getesfera()->getVx()*-coe);
+        float by=(a->getesfera()->getVx()*-coe);
+        //int suma=a->getesfera()->getMasa()+b->getesfera()->getMasa();
+        //float vx=((b->getesfera()->getMasa()*(1+coe)*b->getesfera()->getVx()) + (((a->getesfera()->getMasa())-(coe*b->getesfera()->getMasa()))*a->getesfera()->getVx()))/suma;
+        //float vy=((b->getesfera()->getMasa()*(1+coe)*b->getesfera()->getVy()) + (((a->getesfera()->getMasa())-(coe*b->getesfera()->getMasa()))*a->getesfera()->getVy()))/suma;
+        //float bx=((a->getesfera()->getMasa()*(1+coe)*a->getesfera()->getVx()) + (((b->getesfera()->getMasa())-(coe*a->getesfera()->getMasa()))*b->getesfera()->getVx()))/suma;;
+        //float by=((a->getesfera()->getMasa()*(1+coe)*a->getesfera()->getVy()) + (((b->getesfera()->getMasa())-(coe*a->getesfera()->getMasa()))*b->getesfera()->getVy()))/suma;;
+        a->getesfera()->setVx(vx);
+        a->getesfera()->setVy(vy);
+        b->getesfera()->setVx(bx);
+        b->getesfera()->setVy(by);
         }
 }
 void MainWindow::startAction() // falta lo del dial
@@ -98,6 +111,8 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
         help->pos(v_limit);
         //agregar coefs
         createCoef();
+        //mostrar en line
+        showLine();
         }
     }
 }
@@ -122,6 +137,19 @@ void MainWindow::createCoef()
     }
     coef.push_back(vec);
     vec.clear();
+}
+void MainWindow::showLine()
+{
+    int size = bolas.size();
+    QString rad=QString::number(bolas[size-1]->getesfera()->getRad());
+    QString masa=QString::number(bolas[size-1]->getesfera()->getMasa());
+    QString vx=QString::number(bolas[size-1]->getesfera()->getVx());
+    QString vy=QString::number(bolas[size-1]->getesfera()->getVy());
+    ui->radLineEdit->setText(rad);
+    ui->vxLineEdit->setText(vx);
+    ui->vyLineEdit->setText(vy);
+    ui->masLineEdit->setText(masa);
+
 }
 void MainWindow::actualizar(){
     int ii=0;
@@ -162,6 +190,39 @@ void MainWindow::on_Random_clicked()
         scene->addItem(help);
         bolas.push_back(help);
         help->pos(v_limit);
+        showLine();
+    }
+}
+void MainWindow::on_Apply_clicked()
+{
+    if (!sesion){
+        int size=bolas.size();
+        QString r=ui->radLineEdit->text();
+        float rad=r.toFloat();
+        QString x=ui->vxLineEdit->text();
+        float vx=x.toFloat();
+        QString y=ui->vyLineEdit->text();
+        float vy=y.toFloat();
+        QString m=ui->masLineEdit->text();
+        float mas=m.toFloat();
+        int posx=bolas[size-1]->getesfera()->getPx();
+        int posy=bolas[size-1]->getesfera()->getPy();
+        bolagraf *help=new bolagraf(posx,posy,vx,vy,rad,mas);
+        bolagraf *placeholder=bolas[size-1];
+        scene->removeItem(bolas[size-1]);
+        bolas.pop_back();
+        if (checkPlacement(help) && abs(vy)<=300 && abs(vx)<=300 && mas>=50 && mas<=600 && rad>=5 && rad<=30){
+            scene->addItem(help);
+            bolas.push_back(help);
+            help->pos(v_limit);
+            showLine();
+        }
+        else{
+            scene->addItem(placeholder);
+            bolas.push_back(placeholder);
+            placeholder->pos(v_limit);
+            showLine();
+        }
     }
 }
 

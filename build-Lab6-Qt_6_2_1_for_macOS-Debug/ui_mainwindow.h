@@ -36,13 +36,13 @@ public:
     QWidget *horizontalLayoutWidget_2;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label;
-    QLineEdit *lineEdit;
+    QLineEdit *vyLineEdit;
     QLabel *label_2;
-    QLineEdit *lineEdit_2;
+    QLineEdit *vxLineEdit;
     QLabel *label_3;
-    QLineEdit *lineEdit_3;
+    QLineEdit *radLineEdit;
     QLabel *label_4;
-    QLineEdit *lineEdit_4;
+    QLineEdit *masLineEdit;
     QPushButton *Apply;
     QMenuBar *menubar;
     QStatusBar *statusbar;
@@ -89,40 +89,40 @@ public:
 
         horizontalLayout_2->addWidget(label);
 
-        lineEdit = new QLineEdit(horizontalLayoutWidget_2);
-        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
+        vyLineEdit = new QLineEdit(horizontalLayoutWidget_2);
+        vyLineEdit->setObjectName(QString::fromUtf8("vyLineEdit"));
 
-        horizontalLayout_2->addWidget(lineEdit);
+        horizontalLayout_2->addWidget(vyLineEdit);
 
         label_2 = new QLabel(horizontalLayoutWidget_2);
         label_2->setObjectName(QString::fromUtf8("label_2"));
 
         horizontalLayout_2->addWidget(label_2);
 
-        lineEdit_2 = new QLineEdit(horizontalLayoutWidget_2);
-        lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
+        vxLineEdit = new QLineEdit(horizontalLayoutWidget_2);
+        vxLineEdit->setObjectName(QString::fromUtf8("vxLineEdit"));
 
-        horizontalLayout_2->addWidget(lineEdit_2);
+        horizontalLayout_2->addWidget(vxLineEdit);
 
         label_3 = new QLabel(horizontalLayoutWidget_2);
         label_3->setObjectName(QString::fromUtf8("label_3"));
 
         horizontalLayout_2->addWidget(label_3);
 
-        lineEdit_3 = new QLineEdit(horizontalLayoutWidget_2);
-        lineEdit_3->setObjectName(QString::fromUtf8("lineEdit_3"));
+        radLineEdit = new QLineEdit(horizontalLayoutWidget_2);
+        radLineEdit->setObjectName(QString::fromUtf8("radLineEdit"));
 
-        horizontalLayout_2->addWidget(lineEdit_3);
+        horizontalLayout_2->addWidget(radLineEdit);
 
         label_4 = new QLabel(horizontalLayoutWidget_2);
         label_4->setObjectName(QString::fromUtf8("label_4"));
 
         horizontalLayout_2->addWidget(label_4);
 
-        lineEdit_4 = new QLineEdit(horizontalLayoutWidget_2);
-        lineEdit_4->setObjectName(QString::fromUtf8("lineEdit_4"));
+        masLineEdit = new QLineEdit(horizontalLayoutWidget_2);
+        masLineEdit->setObjectName(QString::fromUtf8("masLineEdit"));
 
-        horizontalLayout_2->addWidget(lineEdit_4);
+        horizontalLayout_2->addWidget(masLineEdit);
 
         Apply = new QPushButton(horizontalLayoutWidget_2);
         Apply->setObjectName(QString::fromUtf8("Apply"));
