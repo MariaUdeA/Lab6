@@ -87,7 +87,7 @@ void bola::mover(float dt)
         if (vy<0)
             ay=-G+((k*vel*rad*rad)/masa);
         }
-    if (vy==0){
+    /*if (vy==0){
         if (vx>=0)
             ax=-((k*vel*rad*rad)/masa);
         if (vx<0)
@@ -96,15 +96,24 @@ void bola::mover(float dt)
             ay=0;
         if(py!=rad)
             ay=-G;
-        }
-    if (vy!=0 && vx!=0) { //problema
+        }*/
+    if (vx!=0) { //problema
         angulo=abs(atan(vy/vx));
-        if (vy>0) ay=-G-((k*vel*rad*rad*sin(angulo))/masa);
+        if (vy>=0) ay=-G-((k*vel*rad*rad*sin(angulo))/masa);
         if (vy<0) ay=-G+((k*vel*rad*rad*sin(angulo))/masa);
         if (vx>0) ax=-((k*vel*rad*rad*cos(angulo))/masa);
         if (vx<0) ax=((k*vel*rad*rad*cos(angulo))/masa);
+        if (vy==0 && py==rad) ay=0;
         }
     if (vy>=0 && py<rad && ay<=0){
+        vy=0;
+        ay=0;
+        if (vx>0)
+            ax=-((k*vel*rad*rad)/masa)-G*ROZ;
+        if (vx<=0)
+            ax=((k*vel*rad*rad)/masa)+G*ROZ;
+    }
+    if (vy==0 && encima){
         vy=0;
         ay=0;
         if (vx>0)
@@ -112,6 +121,7 @@ void bola::mover(float dt)
         if (vx<=0)
             ax=((k*vel*rad*rad)/masa);
     }
+    //if (ax==0) vx=0;
     vx = vx+(dt*ax);
     vy = vy+(dt*ay);
     px += vx*dt+ax*dt*dt*0.5;
@@ -121,4 +131,14 @@ void bola::mover(float dt)
 float bola::getMasa() const
 {
     return masa;
+}
+
+void bola::setEncima(bool newEncima)
+{
+    encima = newEncima;
+}
+
+bool bola::getEncima() const
+{
+    return encima;
 }

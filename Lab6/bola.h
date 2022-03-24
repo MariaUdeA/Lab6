@@ -4,6 +4,7 @@
 #include <math.h>
 #define DEN 1.3  //AIRE A NIVEL DEL MAR (KG/M3)
 #define FR 0.0005
+#define ROZ 0.03 //hielo sobre hielo
 class bola
 {
 public:
@@ -34,6 +35,10 @@ public:
 
     float getMasa() const;
 
+    void setEncima(bool newEncima);
+
+    bool getEncima() const;
+
 private:
     float px;
     float py;
@@ -44,6 +49,7 @@ private:
     float k=0.5*DEN*FR*3.1416;
     float vel;
     float angulo;
+    bool encima=false;
     const float masa;
     const float rad;
 };

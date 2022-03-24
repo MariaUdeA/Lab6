@@ -6,8 +6,8 @@ bolagraf::bolagraf(float px_,float py_, float vx_, float vy_, float rad_,float m
 
 bolagraf::bolagraf(float px_, float py_)
 {
-    float  vx_=rand()%300;
-    float vy_=rand()%300;
+    float  vx_=rand()%600-300;
+    float vy_=rand()%600-300;
     float rad_=rand()%26+5;
     float masa_=rand()%551+50;
     esfera=new bola(px_,py_,vx_,vy_,rad_,masa_);
