@@ -13,6 +13,8 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -30,6 +32,18 @@ public:
     QHBoxLayout *horizontalLayout;
     QPushButton *Start;
     QPushButton *Pause;
+    QPushButton *Random;
+    QWidget *horizontalLayoutWidget_2;
+    QHBoxLayout *horizontalLayout_2;
+    QLabel *label;
+    QLineEdit *lineEdit;
+    QLabel *label_2;
+    QLineEdit *lineEdit_2;
+    QLabel *label_3;
+    QLineEdit *lineEdit_3;
+    QLabel *label_4;
+    QLineEdit *lineEdit_4;
+    QPushButton *Apply;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -45,7 +59,7 @@ public:
         graphicsView->setGeometry(QRect(20, 10, 1100, 550));
         horizontalLayoutWidget = new QWidget(centralwidget);
         horizontalLayoutWidget->setObjectName(QString::fromUtf8("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(20, 550, 251, 80));
+        horizontalLayoutWidget->setGeometry(QRect(20, 550, 254, 80));
         horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
@@ -58,6 +72,62 @@ public:
         Pause->setObjectName(QString::fromUtf8("Pause"));
 
         horizontalLayout->addWidget(Pause);
+
+        Random = new QPushButton(horizontalLayoutWidget);
+        Random->setObjectName(QString::fromUtf8("Random"));
+
+        horizontalLayout->addWidget(Random);
+
+        horizontalLayoutWidget_2 = new QWidget(centralwidget);
+        horizontalLayoutWidget_2->setObjectName(QString::fromUtf8("horizontalLayoutWidget_2"));
+        horizontalLayoutWidget_2->setGeometry(QRect(310, 550, 471, 80));
+        horizontalLayout_2 = new QHBoxLayout(horizontalLayoutWidget_2);
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
+        label = new QLabel(horizontalLayoutWidget_2);
+        label->setObjectName(QString::fromUtf8("label"));
+
+        horizontalLayout_2->addWidget(label);
+
+        lineEdit = new QLineEdit(horizontalLayoutWidget_2);
+        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
+
+        horizontalLayout_2->addWidget(lineEdit);
+
+        label_2 = new QLabel(horizontalLayoutWidget_2);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+
+        horizontalLayout_2->addWidget(label_2);
+
+        lineEdit_2 = new QLineEdit(horizontalLayoutWidget_2);
+        lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
+
+        horizontalLayout_2->addWidget(lineEdit_2);
+
+        label_3 = new QLabel(horizontalLayoutWidget_2);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+
+        horizontalLayout_2->addWidget(label_3);
+
+        lineEdit_3 = new QLineEdit(horizontalLayoutWidget_2);
+        lineEdit_3->setObjectName(QString::fromUtf8("lineEdit_3"));
+
+        horizontalLayout_2->addWidget(lineEdit_3);
+
+        label_4 = new QLabel(horizontalLayoutWidget_2);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+
+        horizontalLayout_2->addWidget(label_4);
+
+        lineEdit_4 = new QLineEdit(horizontalLayoutWidget_2);
+        lineEdit_4->setObjectName(QString::fromUtf8("lineEdit_4"));
+
+        horizontalLayout_2->addWidget(lineEdit_4);
+
+        Apply = new QPushButton(horizontalLayoutWidget_2);
+        Apply->setObjectName(QString::fromUtf8("Apply"));
+
+        horizontalLayout_2->addWidget(Apply);
 
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
@@ -78,6 +148,12 @@ public:
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         Start->setText(QCoreApplication::translate("MainWindow", "Start", nullptr));
         Pause->setText(QCoreApplication::translate("MainWindow", "Pause", nullptr));
+        Random->setText(QCoreApplication::translate("MainWindow", "Random", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "Vy:", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "Vx:", nullptr));
+        label_3->setText(QCoreApplication::translate("MainWindow", "Radio:", nullptr));
+        label_4->setText(QCoreApplication::translate("MainWindow", "Masa:", nullptr));
+        Apply->setText(QCoreApplication::translate("MainWindow", "Apply", nullptr));
     } // retranslateUi
 
 };

@@ -39,6 +39,10 @@ public:
 
     bool getEncima() const;
 
+    void setMasa(float newMasa);
+
+    void setRad(float newRad);
+
 private:
     float px;
     float py;
@@ -50,8 +54,8 @@ private:
     float vel;
     float angulo;
     bool encima=false;
-    const float masa;
-    const float rad;
+    float masa;
+    float rad;
 };
 
 #endif // BOLA_H

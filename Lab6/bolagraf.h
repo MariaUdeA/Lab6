@@ -2,7 +2,7 @@
 #define BOLAGRAF_H
 #include <QPainter>
 #include <QGraphicsItem>
-#include <stdlib.h>
+#include <stdlib.h> //random
 #include "bola.h"
 #define DT 0.1
 

@@ -8,6 +8,7 @@
 #include <QPushButton>
 #include <vector>
 #include <QMouseEvent>
+#include <stdlib.h> //random
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -21,7 +22,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void bordercollision(bolagraf *b);
-    void objectcollision(bolagraf *a,bolagraf *b);
+    void objectcollision(bolagraf *a,bolagraf *b,int a_,int b_);
     void startAction();
     void mousePressEvent(QMouseEvent *event);
     bool checkPlacement(bolagraf *b);
@@ -32,11 +33,14 @@ private slots:
     void on_Pause_clicked();
     void on_Start_clicked();
 
+    void on_Random_clicked();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     bolagraf *obj1;
     bolagraf *obj2;
+    bolagraf *obj3;
     int v_limit;
     int h_limit;
     bool sesion=false;

@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "random"
 #include <math.h>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -14,20 +13,28 @@ MainWindow::MainWindow(QWidget *parent)
     scene->addRect(scene->sceneRect());
     ui->graphicsView->setScene(scene);
     //inicializacion de objetos se hace con el clic
-    /*
-    obj1=new bolagraf(160,60,40,40,11,200);
+    /*obj1=new bolagraf(160,60,40,40,11,200);
+    bolas.push_back(obj1);
     scene->addItem(obj1);
     obj1->pos(v_limit);
+    createCoef();
     obj2=new bolagraf(150,11,40,40,11,200);
+    bolas.push_back(obj2);
     scene->addItem(obj2);
-    obj2->pos(v_limit);*/
+    obj2->pos(v_limit);
+    createCoef();
+    obj3=new bolagraf(150,11,40,40,11,200);
+    bolas.push_back(obj3);
+    scene->addItem(obj3);
+    obj3->pos(v_limit);
+    createCoef();
+    sesion=true;
+    startAction();*/
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-    delete obj1;
-    delete obj2;
     delete scene;
     delete timer_movimiento;
 }
@@ -51,8 +58,11 @@ void MainWindow::bordercollision(bolagraf *b)
     }
      b->actualizar(v_limit);
 }
-void MainWindow::objectcollision(bolagraf *a, bolagraf *b) //arreglar
+void MainWindow::objectcollision(bolagraf *a, bolagraf *b,int a_, int b_) //arreglar vs iguales
 {
+    float coe;
+    if (a_>b_) coe=float(coef[a_][b_])/100;
+    if (a_<b_) coe=float(coef[b_][a_])/100;
     if (a->collidesWithItem(b)){
         //if (a->getesfera()->getVy()<=0 && a->getesfera()->getPy()>b->getesfera()->getPy()){
         //    a->getesfera()->setPy(b->getesfera()->getPy()+b->getesfera()->getRad()+a->getesfera()->getRad());
@@ -60,10 +70,9 @@ void MainWindow::objectcollision(bolagraf *a, bolagraf *b) //arreglar
         //    a->getesfera()->setEncima(true);
         //}
         //else{
-        a->getesfera()->setVx(a->getesfera()->getVx()*-1);
-        a->getesfera()->setVy(a->getesfera()->getVy()*-1);
-        a->getesfera()->setEncima(false);}
-
+        a->getesfera()->setVx(a->getesfera()->getVx()*-coe);
+        a->getesfera()->setVy(a->getesfera()->getVy()*-coe);
+        }
 }
 void MainWindow::startAction() // falta lo del dial
 {
@@ -77,7 +86,7 @@ void MainWindow::startAction() // falta lo del dial
         timer_movimiento->stop();
     }
 }
-void MainWindow::mousePressEvent(QMouseEvent *event) //coefs
+void MainWindow::mousePressEvent(QMouseEvent *event)
 {
     if (!sesion){
         int x_=event->x()-75;
@@ -88,6 +97,7 @@ void MainWindow::mousePressEvent(QMouseEvent *event) //coefs
         bolas.push_back(help);
         help->pos(v_limit);
         //agregar coefs
+        createCoef();
         }
     }
 }
@@ -108,20 +118,25 @@ void MainWindow::createCoef()
     std::vector <int> vec;
     for (int i=0;i<size;i++){
         if (i==size-1) vec.push_back(0);
-        else vec.push_back((rand()%51+50));
+        else vec.push_back((rand()%51)+50);
     }
     coef.push_back(vec);
     vec.clear();
 }
 void MainWindow::actualizar(){
+    int ii=0;
+    int ib=0;
     for (auto i=bolas.begin();i!=bolas.end();i++){
         bolagraf *e=*i;
         e->actualizar(v_limit);
         bordercollision(e);
         for (auto b=bolas.begin();b!=bolas.end();b++){
             bolagraf *f=*b;
-            if (f!=e) objectcollision(f,e);
+            if (ii!=ib) objectcollision(f,e,ii,ib);
+            ib++;
         }
+        ii++;
+        ib=0;
     }
 }
 void MainWindow::on_Pause_clicked()
@@ -134,3 +149,19 @@ void MainWindow::on_Start_clicked()
     sesion=true;
     startAction();
 }
+void MainWindow::on_Random_clicked()
+{
+    if (!sesion){
+        int size=bolas.size();
+        int x_=bolas[size-1]->getesfera()->getPx();
+        int y_=bolas[size-1]->getesfera()->getPy();
+        scene->removeItem(bolas[size-1]);
+        bolas.pop_back();
+        bolagraf *help=new bolagraf(x_,y_);
+        while (!checkPlacement(help)) help->getesfera()->setRad(rand()%26+5);
+        scene->addItem(help);
+        bolas.push_back(help);
+        help->pos(v_limit);
+    }
+}
+

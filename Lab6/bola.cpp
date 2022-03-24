@@ -105,21 +105,20 @@ void bola::mover(float dt)
         if (vx<0) ax=((k*vel*rad*rad*cos(angulo))/masa);
         if (vy==0 && py==rad) ay=0;
         }
-    if (vy>=0 && py<rad && ay<=0){
+    if (vy>=0 && py<rad && ay<=0){ //fricción con suelo
         vy=0;
         ay=0;
+        encima=true;
         if (vx>0)
             ax=-((k*vel*rad*rad)/masa)-G*ROZ;
         if (vx<=0)
             ax=((k*vel*rad*rad)/masa)+G*ROZ;
     }
-    if (vy==0 && encima){
-        vy=0;
-        ay=0;
+    if (encima){
         if (vx>0)
-            ax=-((k*vel*rad*rad)/masa);
+            ax=-((k*vel*rad*rad)/masa)-G*ROZ;
         if (vx<=0)
-            ax=((k*vel*rad*rad)/masa);
+            ax=((k*vel*rad*rad)/masa)+G*ROZ;
     }
     //if (ax==0) vx=0;
     vx = vx+(dt*ax);
@@ -141,4 +140,14 @@ void bola::setEncima(bool newEncima)
 bool bola::getEncima() const
 {
     return encima;
+}
+
+void bola::setMasa(float newMasa)
+{
+    masa = newMasa;
+}
+
+void bola::setRad(float newRad)
+{
+    rad = newRad;
 }
