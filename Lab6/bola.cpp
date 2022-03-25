@@ -4,7 +4,6 @@
 bola::bola(float px_,float py_, float vx_, float vy_, float rad_,float masa_):
     px(px_),py(py_),vx(vx_),vy(vy_),rad(rad_),masa(masa_)
 {
-    qDebug()<<px<<"  "<<py<<"  "<<vx<<"  "<<vy<<"  "<<rad<<" "<<masa;
 }
 
 bola::~bola()
@@ -96,7 +95,7 @@ void bola::mover(float dt)
         if (vy==0 && py==rad) ay=0;
         }
     if (vy>=0 && py<rad && ay<=0){ //fricción con suelo
-        //vy=0;
+        vy=0;
         ay=0;
         encima=true;
         if (vx>0)
@@ -110,6 +109,7 @@ void bola::mover(float dt)
         if (vx<=0)
             ax=((k*vel*rad*rad)/masa)+G*ROZ;
     }
+    if (vy<=0 && ay==0) vy=0;
     vx = vx+(dt*ax);
     vy = vy+(dt*ay);
     px += vx*dt+ax*dt*dt*0.5;
@@ -120,23 +120,24 @@ float bola::getMasa() const
 {
     return masa;
 }
-
 void bola::setEncima(bool newEncima)
 {
     encima = newEncima;
 }
-
 bool bola::getEncima() const
 {
     return encima;
 }
-
 void bola::setMasa(float newMasa)
 {
     masa = newMasa;
 }
-
 void bola::setRad(float newRad)
 {
     rad = newRad;
+}
+void bola::mover2(float dt)
+{
+    px += vx*dt+ax*dt*dt*0.5;
+    py += vy*dt+ay*dt*dt*0.5;
 }

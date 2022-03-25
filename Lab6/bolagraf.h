@@ -16,6 +16,7 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void pos(int v_lim);
     void actualizar(int v_lim);
+    void actualizar2(int v_lim);
     bola* getesfera();
 
 private:

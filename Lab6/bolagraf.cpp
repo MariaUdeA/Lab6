@@ -44,3 +44,8 @@ bola *bolagraf::getesfera()
 {
     return esfera;
 }
+void bolagraf::actualizar2(int v_lim)
+{
+    esfera->mover2(DT);
+    pos(v_lim);
+}

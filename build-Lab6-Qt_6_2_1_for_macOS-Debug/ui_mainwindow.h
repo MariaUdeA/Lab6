@@ -33,6 +33,7 @@ public:
     QPushButton *Start;
     QPushButton *Pause;
     QPushButton *Random;
+    QPushButton *Restart;
     QWidget *horizontalLayoutWidget_2;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label;
@@ -59,7 +60,7 @@ public:
         graphicsView->setGeometry(QRect(20, 10, 1100, 550));
         horizontalLayoutWidget = new QWidget(centralwidget);
         horizontalLayoutWidget->setObjectName(QString::fromUtf8("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(20, 550, 254, 80));
+        horizontalLayoutWidget->setGeometry(QRect(20, 550, 340, 80));
         horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
@@ -78,9 +79,14 @@ public:
 
         horizontalLayout->addWidget(Random);
 
+        Restart = new QPushButton(horizontalLayoutWidget);
+        Restart->setObjectName(QString::fromUtf8("Restart"));
+
+        horizontalLayout->addWidget(Restart);
+
         horizontalLayoutWidget_2 = new QWidget(centralwidget);
         horizontalLayoutWidget_2->setObjectName(QString::fromUtf8("horizontalLayoutWidget_2"));
-        horizontalLayoutWidget_2->setGeometry(QRect(310, 550, 471, 80));
+        horizontalLayoutWidget_2->setGeometry(QRect(390, 550, 571, 80));
         horizontalLayout_2 = new QHBoxLayout(horizontalLayoutWidget_2);
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
@@ -149,6 +155,7 @@ public:
         Start->setText(QCoreApplication::translate("MainWindow", "Start", nullptr));
         Pause->setText(QCoreApplication::translate("MainWindow", "Pause", nullptr));
         Random->setText(QCoreApplication::translate("MainWindow", "Random", nullptr));
+        Restart->setText(QCoreApplication::translate("MainWindow", "Restart", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Vy:", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "Vx:", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "Radio:", nullptr));

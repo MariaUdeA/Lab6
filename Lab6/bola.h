@@ -42,6 +42,7 @@ public:
     void setMasa(float newMasa);
 
     void setRad(float newRad);
+    void mover2(float dt);
 
 private:
     float px;

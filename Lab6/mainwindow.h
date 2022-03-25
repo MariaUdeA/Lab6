@@ -33,10 +33,13 @@ private slots:
     void actualizar();
     void on_Pause_clicked();
     void on_Start_clicked();
-
     void on_Random_clicked();
-
     void on_Apply_clicked();
+    void on_Restart_clicked();
+    void on_vyLineEdit_textEdited(const QString &arg1);
+    void on_vxLineEdit_textEdited(const QString &arg1);
+    void on_radLineEdit_textEdited(const QString &arg1);
+    void on_masLineEdit_textEdited(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;
@@ -50,7 +53,11 @@ private:
     QTimer *timer_movimiento;
     std::vector <bolagraf*> bolas;
     std::vector <std::vector<int>> coef;
-    //int speed; //para el dial
+    bool WriteVy=false;
+    bool WriteVx=false;
+    bool WriteRad=false;
+    bool WriteMasa=false;
+    int speed=30; //para el dial
 };
 
 #endif // MAINWINDOW_H
